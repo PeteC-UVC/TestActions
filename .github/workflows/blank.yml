@@ -7,6 +7,7 @@ on:
 # Required to get the ID Token that will be used for OIDC
 permissions:
   id-token: write
+  contents: read
  
 jobs:
   read-dev:
@@ -26,8 +27,8 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1 # https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions
         with:
           role-to-assume: arn:aws:iam::713113381398:role/sts-lab-2-target
-          role-session-name: GitHub_to_AWS_via_FederatedOIDC
-          aws-region: "us-east-1"
+          role-session-name: OIDCSession
+          aws-region: us-east-1
  
       - run: aws sts get-caller-identity
         shell: bash
